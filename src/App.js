@@ -11,24 +11,27 @@ import {Home} from "./pages/Home";
 
 function App() {
     return (<HashRouter>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="dark" variant="dark" expand="md">
                 <Container>
-                    <Navbar.Brand h>Bar Kar</Navbar.Brand>
+                    <Navbar.Brand>Bar Kar</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link><Link to="/">Home</Link></Nav.Link>
-                            <NavDropdown title={<Link to="/attracties">Attracties</Link>} id="basic-nav-dropdown">
-                                <NavDropdown.Item></NavDropdown.Item>
+                        <Nav>
+                            <Link className="nav-link" to="/">Home</Link>
+                            <NavDropdown title="Attracties" id="basic-nav-dropdown">
+                                <Link className="dropdown-item" to="bikes/">Bier fietsen</Link>
+                                <Link className="dropdown-item" to="bouncyhouse/">Springkastelen</Link>
                             </NavDropdown>
+                            <Link className="nav-link" to="/">Contact</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
 
+
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="attracties" element={<BikePage/>}/>
+                <Route path="bikes" element={<BikePage/>}/>
             </Routes>
         </HashRouter>
     );
