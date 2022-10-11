@@ -11,27 +11,9 @@ import {Home} from "./pages/Home";
 
 function App() {
     return (
-        <HashRouter>
-            <Navbar bg="light" expand="lg">
-                <Container>
-                    <Navbar.Brand href="#home">Bar Kar</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link><Link to="Bierfiets/">Home</Link></Nav.Link>
-                            <NavDropdown title={<Link to="attracties">Attracties</Link>} id="basic-nav-dropdown">
-                                <NavDropdown.Item><Link to="fietsen">Bier fietsen</Link></NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-
-            <Routes>
-                <Route path="Bierfiets/" element={<Home/>}/>
-                <Route path="/attracties" element={<BikePage/>}/>
-            </Routes>
-        </HashRouter>
+        <div>
+            <p>HALLO</p>
+        </div>
     );
 }
 
