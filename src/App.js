@@ -28,7 +28,7 @@ function App() {
             </Navbar>
 
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="Bierfiets/" element={<Home/>}/>
                 <Route path="/attracties" element={<BikePage/>}/>
             </Routes>
         </HashRouter>
