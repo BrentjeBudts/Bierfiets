@@ -12,7 +12,7 @@ import {Home} from "./pages/Home";
 function App() {
     return (
         <div>
-            <p>HALLO</p>
+            <p>TEST</p>
         </div>
     );
 }
