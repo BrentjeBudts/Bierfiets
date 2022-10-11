@@ -17,8 +17,8 @@ function App() {
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link><Link to="Bierfiets/">Home</Link></Nav.Link>
-                            <NavDropdown title={<Link to="Bierfiets/attracties">Attracties</Link>} id="basic-nav-dropdown">
+                            <Nav.Link><Link to="/">Home</Link></Nav.Link>
+                            <NavDropdown title={<Link to="/attracties">Attracties</Link>} id="basic-nav-dropdown">
                                 <NavDropdown.Item></NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
@@ -27,8 +27,8 @@ function App() {
             </Navbar>
 
             <Routes>
-                <Route path="Bierfiets/" element={<Home/>}/>
-                <Route path="Bierfiets/attracties" element={<BikePage/>}/>
+                <Route path="/" element={<Home/>}/>
+                <Route path="attracties" element={<BikePage/>}/>
             </Routes>
         </HashRouter>
     );
