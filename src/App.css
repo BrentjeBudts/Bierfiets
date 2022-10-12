@@ -1,0 +1,14 @@
+.dropdowns:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.link{
+    color: #FFFFFF8C;
+
+    text-decoration: none !important;
+}
+.link:hover {
+    color: var(--bs-navbar-hover-color);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
