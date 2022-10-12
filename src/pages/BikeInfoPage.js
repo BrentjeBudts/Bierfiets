@@ -2,6 +2,7 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 
+
 export function BikeInfoPage(props){
     const {id} = useParams();
     const {bikes} = props;

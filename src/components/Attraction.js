@@ -7,7 +7,7 @@ export function Attraction(props){
     const {children,attraction} = props;
     return(
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={"/img/"+attraction.img} />
+            <Card.Img variant="top" src={attraction.img} />
             <Card.Body>
                 <Card.Title>{attraction.name}</Card.Title>
                 <Card.Text>

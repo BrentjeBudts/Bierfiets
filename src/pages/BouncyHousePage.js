@@ -9,7 +9,8 @@ export function BouncyHousePage(props){
     console.log(props);
     return (<div>
             <Container>
-                <h4>Springkastelen</h4><Row className="justify-content-start">{houses.map(o => <Col sm="auto" key={o.id}><BouncyHouse house={o}/></Col>)}</Row>
+                {houses!==undefined?
+                <div><h4>Springkastelen</h4><Row className="justify-content-start">{houses.map(o => <Col sm="auto" key={o.id}><BouncyHouse house={o}/></Col>)}</Row></div>:""}
             </Container>
         </div>
     )
