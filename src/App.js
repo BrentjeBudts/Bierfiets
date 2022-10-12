@@ -13,7 +13,7 @@ import {BIER_FIETSEN, SPRINGKASTELEN} from "./data/data";
 import {BikeInfoPage} from "./pages/BikeInfoPage";
 import {BouncyHousePage} from "./pages/BouncyHousePage";
 import {BouncyHouseInfoPage} from "./pages/BouncyHouseInfoPage";
-
+import "./services/firestore"
 
 function App() {
     return (<HashRouter>
