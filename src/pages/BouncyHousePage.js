@@ -6,7 +6,7 @@ import {BouncyHouse} from "../components/BouncyHouse";
 
 export function BouncyHousePage(props){
     const {houses} = props;
-    console.log(props);
+
     return (<div>
             <Container>
                 {houses!==undefined?

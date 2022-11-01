@@ -5,9 +5,7 @@ import {Bike} from "../components/Bike";
 import {Container} from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
-import {collection} from 'firebase/firestore';
-import {firestoreDB} from "../services/firestore";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+
 
 
 
@@ -24,7 +22,3 @@ export function BikePage(props) {
     )
 }
 
-
-BikePage.propTypes = {
-    bikes: PropTypes.arrayOf(PropTypes.object)
-}

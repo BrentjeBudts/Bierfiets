@@ -2,28 +2,26 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {firestoreDB} from "../services/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import {collection, doc, updateDoc, query, where, getDocs} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
+import {useCollectionData} from "react-firebase-hooks/firestore";
 
 
-export function BikeInfoPage(props){
+export async function BikeInfoPage(props) {
     const {id} = useParams();
     const {bikes} = props;
     const [bike, setBike] = useState({});
-    useEffect(()=>{
-        setBike(bikes.find(b=> id == b.id));
-    })
+    const collectionRef = collection(firestoreDB, "BeerBikes").withConverter(firestoreConverter);
+    const queryRef = query(collectionRef, where("id", "==", id));
+    const value = await getDocs(queryRef);
 
-    const updateBike =() =>{
+    console.log(value);
 
-        updateDoc(bikes, bike).then(r => 0);
-    }
-
-    return(
+    return (
         <div>
             <h4>{bike.name}</h4>
             <p>//TODO FORM</p>
-            <Button onClick={updateBike}>HIRE</Button>
+            <Button>HIRE</Button>
         </div>
     )
 }
