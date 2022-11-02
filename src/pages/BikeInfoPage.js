@@ -2,43 +2,35 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {firestoreDB} from "../services/firestore";
-import {collection, doc, updateDoc, query, where, getDocs} from "firebase/firestore";
+import {collection, doc, updateDoc} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 
 
-export async function BikeInfoPage(props) {
+export function BikeInfoPage(props){
     const {id} = useParams();
     const {bikes} = props;
+
     const [bike, setBike] = useState({});
-    const collectionRef = collection(firestoreDB, "BeerBikes").withConverter(firestoreConverter);
-    const queryRef = query(collectionRef, where("id", "==", id));
-    const value = await getDocs(queryRef);
+    useEffect(()=>{
+        setBike(bikes.find(b=> id == b.id));
+    })
 
-    console.log(value);
+    const updateBike = ()=> {
+        bikes.forEach(p => {
+            if(p.id == id) updateDoc(p.ref, { hired : true});
+        })
+    }
 
-    return (
+    return(
         <div>
             <h4>{bike.name}</h4>
             <p>//TODO FORM</p>
-            <Button>HIRE</Button>
+            <Button onClick={updateBike}>HIRE</Button>
         </div>
     )
 }
 
 
 
-export const firestoreConverter = {
-    toFirestore: function(dataInApp) {
-        const dataInDb = {};
-        Object.entries(dataInApp).forEach(entry => {
-            const [key, value] = entry;
-            dataInDb[key] = value;
-        });
-        return dataInDb;
-    },
-    fromFirestore: function(snapshot, options) {
-        const data = snapshot.data(options);
-        return {...data, id: snapshot.id, ref: snapshot.ref};
-    }
-}
+
