@@ -1,10 +1,10 @@
 
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import {firestoreDB} from "../services/firestore";
-import {collection, doc, updateDoc} from "firebase/firestore";
+
+import {updateDoc} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
-import {useCollectionData} from "react-firebase-hooks/firestore";
+
 
 
 export function BikeInfoPage(props){
@@ -12,21 +12,30 @@ export function BikeInfoPage(props){
     const {bikes} = props;
 
     const [bike, setBike] = useState({});
+    const [isLoading, setLoading] = useState(true);
+
     useEffect(()=>{
         setBike(bikes.find(b=> id == b.id));
     })
 
     const updateBike = ()=> {
         bikes.forEach(p => {
-            if(p.id == id) updateDoc(p.ref, { hired : true});
+            if(p.id == id){
+                setLoading(false);
+                setTimeout(()=>{
+                    updateDoc(p.ref, {hired: true}).then(() =>{
+                        setLoading(true);
+                    });
+                },3000);
+            }
         })
     }
 
     return(
         <div>
             <h4>{bike.name}</h4>
-            <p>//TODO FORM</p>
             <Button onClick={updateBike}>HIRE</Button>
+            {isLoading?"":<div>Loading</div>}
         </div>
     )
 }

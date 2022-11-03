@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter, Link, Route, Routes,useParams} from "react-router-dom";
 import {BikePage} from "./pages/BikePage";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {Home} from "./pages/Home";
 import {NavBar} from "./components/NavBar";
