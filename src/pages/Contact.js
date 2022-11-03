@@ -14,7 +14,7 @@ export function Contact(props){
 
     return (
         <div>
-            Need help?
+            <p>Want to rate us?</p>
             <Rate defaultValue={3} onChange={setRate}/>
             <Button onClick={addRate}>SEND</Button>
         </div>)
