@@ -1,4 +1,5 @@
 import './App.css';
+import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter, Link, Route, Routes,useParams} from "react-router-dom";
 import {BikePage} from "./pages/BikePage";
@@ -38,14 +39,14 @@ function App() {
     const [bikeData, loading, error] = useCollectionData(beerBikeRef);
     const bouncyHouseRef = collection(firestoreDB,"BouncyHouses").withConverter(firestoreConverter);
     const[housesData] = useCollectionData(bouncyHouseRef);
-
+    const ratesRef = collection(firestoreDB,"Rates").withConverter(firestoreConverter);
     return (<HashRouter>
             <NavBar/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="attractions/bikes/*" element={<BikePage bikes={bikeData}/>}/>
                 <Route path="attractions/houses/*" element={<BouncyHousePage houses={housesData}/>}/>
-                <Route path="contact" element={<Contact/>}/>
+                <Route path="contact" element={<Contact rates={ratesRef}/>}/>
                 <Route path="attractions" element={<Attractions bikes={bikeData} houses={housesData}/>}/>
                 <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
                 <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
