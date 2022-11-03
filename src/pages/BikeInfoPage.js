@@ -4,6 +4,7 @@ import React, {useEffect, useState} from "react";
 
 import {updateDoc} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
+import {Modal} from "antd";
 
 
 
@@ -13,10 +14,12 @@ export function BikeInfoPage(props){
 
     const [bike, setBike] = useState({});
     const [isLoading, setLoading] = useState(true);
+    const [open, setOpen] = useState(false);
 
     useEffect(()=>{
         setBike(bikes.find(b=> id == b.id));
-    })
+    });
+
 
     const updateBike = ()=> {
         bikes.forEach(p => {
@@ -24,12 +27,18 @@ export function BikeInfoPage(props){
                 setLoading(false);
                 setTimeout(()=>{
                     updateDoc(p.ref, {hired: true}).then(() =>{
-                        setLoading(true);
+                        success()
                     });
                 },3000);
             }
         })
     }
+
+    const success = () => {
+        Modal.success({
+            content: 'HIRED SUCCESSFULLY',
+        });
+    };
 
     return(
         <div>
