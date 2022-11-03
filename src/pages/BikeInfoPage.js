@@ -13,41 +13,52 @@ export function BikeInfoPage(props){
     const {bikes} = props;
 
     const [bike, setBike] = useState({});
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
 
     useEffect(()=>{
-        setBike(bikes.find(b=> id == b.id));
+        if(bikes){
+            setBike(bikes.find(b=> id == b.id));
+        }
     });
 
 
+
+
+    return(
+        <div>
+            <h4>{bike.name}</h4>
+            <Button onClick={updateList(bikes,setLoading,id)}>HIRE</Button>
+            {isLoading?<div>Loading</div>:""}
+        </div>
+    )
+}
+
+export function updateList(list,setLoading, id){
+
     const updateBike = ()=> {
-        bikes.forEach(p => {
+        setLoading(true);
+        list.forEach(p => {
             if(p.id == id){
-                setLoading(false);
                 setTimeout(()=>{
                     updateDoc(p.ref, {hired: true}).then(() =>{
                         success()
                     });
                 },3000);
             }
-        })
+        });
     }
 
     const success = () => {
+        setLoading(false);
         Modal.success({
             content: 'HIRED SUCCESSFULLY',
         });
     };
 
-    return(
-        <div>
-            <h4>{bike.name}</h4>
-            <Button onClick={updateBike}>HIRE</Button>
-            {isLoading?"":<div>Loading</div>}
-        </div>
-    )
+    return updateBike;
 }
+
 
 
 
