@@ -26,7 +26,7 @@ export function BikeInfoPage(props){
     return(
         <Container>
             <InfoCardGroup img={bike.img} title={bike.name}>
-                <Button onClick={updateList(bikes,setLoading,id)}>HIRE</Button>
+                <Button className="text-center" onClick={updateList(bikes,setLoading,id)}>HIRE</Button>
                 {isLoading?<Spin name="ball-clip-rotate-multiple" color="blue"/> :""}
             </InfoCardGroup>
         </Container>

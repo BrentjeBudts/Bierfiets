@@ -10,8 +10,8 @@ export function InfoCardGroup(props){
             </Card>
             <Card>
                 <Card.Body>
-                    <Card.Title>{title}</Card.Title>
-                    <div>{children}</div>
+                    <Card.Title className="text-center">{title}</Card.Title>
+                    <div className="text-center">{children}</div>
                 </Card.Body>
             </Card>
         </CardGroup>
