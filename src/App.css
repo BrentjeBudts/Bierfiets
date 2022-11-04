@@ -12,3 +12,7 @@
     color: var(--bs-navbar-hover-color);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
+
+.cardImg{
+    height: 100%;
+}

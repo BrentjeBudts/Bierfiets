@@ -1,10 +1,11 @@
 
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-
-import {updateDoc} from "firebase/firestore";
 import Button from "react-bootstrap/Button";
-import {Modal} from "antd";
+import {Spin} from "antd";
+import {updateList} from "../utilities/updateList";
+import {Card, CardGroup, Container} from "react-bootstrap";
+import {InfoCardGroup} from "../components/InfoCardGroup";
 
 
 
@@ -14,7 +15,7 @@ export function BikeInfoPage(props){
 
     const [bike, setBike] = useState({});
     const [isLoading, setLoading] = useState(false);
-    const [open, setOpen] = useState(false);
+
 
     useEffect(()=>{
         if(bikes){
@@ -22,42 +23,18 @@ export function BikeInfoPage(props){
         }
     });
 
-
-
-
     return(
-        <div>
-            <h4>{bike.name}</h4>
-            <Button onClick={updateList(bikes,setLoading,id)}>HIRE</Button>
-            {isLoading?<div>Loading</div>:""}
-        </div>
+        <Container>
+            <InfoCardGroup img={bike.img} title={bike.name}>
+                <Button onClick={updateList(bikes,setLoading,id)}>HIRE</Button>
+                {isLoading?<Spin name="ball-clip-rotate-multiple" color="blue"/> :""}
+            </InfoCardGroup>
+        </Container>
     )
 }
 
-export function updateList(list,setLoading, id){
 
-    const updateBike = ()=> {
-        setLoading(true);
-        list.forEach(p => {
-            if(p.id == id){
-                setTimeout(()=>{
-                    updateDoc(p.ref, {hired: true}).then(() =>{
-                        success()
-                    });
-                },3000);
-            }
-        });
-    }
 
-    const success = () => {
-        setLoading(false);
-        Modal.success({
-            content: 'HIRED SUCCESSFULLY',
-        });
-    };
-
-    return updateBike;
-}
 
 
 
