@@ -10,7 +10,11 @@ export function BouncyHouse(props){
     const {house} =props;
 
     return (<div>
-            <Attraction attraction={house}><Link className="btn-light" to={'/houses/'+house.id} key={house.id}>Huur dit springkasteel!</Link></Attraction>
+            <Attraction attraction={house}>
+                <p>Prijs : {house.price}€</p>
+                <p>Grootte : {house.size}</p>
+                <Link className="btn-light" to={'/houses/'+house.id} key={house.id}>Huur dit springkasteel!</Link><
+            /Attraction>
         </div>
     )
 }

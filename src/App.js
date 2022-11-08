@@ -7,8 +7,8 @@ import React, {useEffect, useState} from "react";
 
 import {Home} from "./pages/Home";
 import {NavBar} from "./components/NavBar";
-import {Contact} from "./pages/Contact";
-import {Attractions} from "./pages/Attractions";
+import {ContactPage} from "./pages/ContactPage";
+import {AttractionsPage} from "./pages/AttractionsPage";
 
 import {collection} from 'firebase/firestore';
 import {firestoreDB} from "./services/firestore";
@@ -46,8 +46,8 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="attractions/bikes/*" element={<BikePage bikes={bikeData}/>}/>
                 <Route path="attractions/houses/*" element={<BouncyHousePage houses={housesData}/>}/>
-                <Route path="contact" element={<Contact rates={ratesRef}/>}/>
-                <Route path="attractions" element={<Attractions bikes={bikeData} houses={housesData}/>}/>
+                <Route path="contact" element={<ContactPage rates={ratesRef}/>}/>
+                <Route path="attractions" element={<AttractionsPage bikes={bikeData} houses={housesData}/>}/>
                 <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
                 <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
             </Routes>

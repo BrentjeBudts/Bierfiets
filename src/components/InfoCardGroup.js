@@ -6,7 +6,7 @@ export function InfoCardGroup(props){
     return (
         <CardGroup>
             <Card>
-                <Card.Img variant="top" src={img}/>
+                <Card.Img variant="top" className="cardImg" src={img}/>
             </Card>
             <Card>
                 <Card.Body>

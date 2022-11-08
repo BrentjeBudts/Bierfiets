@@ -1,15 +1,16 @@
 import React, {useState} from "react";
 
 import {addDoc} from "firebase/firestore"
-import {DatePicker, Rate} from "antd";
 import Button from "react-bootstrap/Button";
+import {success} from "../utilities/updateList";
+import {Rate} from "antd";
 
-export function Contact(props){
+export function ContactPage(props){
     const {rates} = props;
     const [rate, setRate] = useState(0);
 
     const addRate = () =>{
-        addDoc(rates, {stars :rate});
+        addDoc(rates, {stars: rate}).then(()=>success('RATED SUCCESSFULLY'));
     }
 
     return (

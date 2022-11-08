@@ -8,7 +8,9 @@ import {Attraction} from "./Attraction";
 export function Bike(props) {
     const {bike} =props;
     return (<div>
-            <Attraction attraction={bike}><Link className="btn-light" to={'/bikes/'+bike.id} key={bike.id}>Huur deze fiets!</Link></Attraction>
+            <Attraction attraction={bike}>
+                <Link className="btn-light" to={'/bikes/'+bike.id} key={bike.id}>Huur deze fiets!</Link>
+            </Attraction>
         </div>
     )
 }

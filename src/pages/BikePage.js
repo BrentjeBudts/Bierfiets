@@ -16,7 +16,10 @@ export function BikePage(props) {
     return (<div>
             <Container>
                 {bikes!==undefined?
-                <div><h4>Bier fietsen</h4><Row className="justify-content-start">{bikes.map(o => <Col sm="auto" key={o.id}><Bike bike={o}/></Col>)}</Row></div>:""}
+                <div>
+                    <h4>Bier fietsen</h4>
+                    <Row className="justify-content-start">{bikes.map(o => <Col sm="auto" key={o.id}><Bike bike={o}/></Col>)}</Row>
+                </div>:""}
             </Container>
         </div>
     )

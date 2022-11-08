@@ -3,25 +3,25 @@ import {Modal} from "antd";
 
 export function updateList(list,setLoading, id){
 
-    const updateBike = ()=> {
+    const updateList = ()=> {
         setLoading(true);
         list.forEach(p => {
             if(p.id == id){
                 setTimeout(()=>{
                     updateDoc(p.ref, {hired: true}).then(() =>{
-                        success()
+                        setLoading(false);
+                        success('HIRED SUCCESSFULLY')
                     });
                 },3000);
             }
         });
     }
 
-    const success = () => {
-        setLoading(false);
-        Modal.success({
-            content: 'HIRED SUCCESSFULLY',
-        });
-    };
-
-    return updateBike;
+    return updateList;
 }
+
+export const success = (succesMessage) => {
+    Modal.success({
+        content: succesMessage,
+    });
+};
