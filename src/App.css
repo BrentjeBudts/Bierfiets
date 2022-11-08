@@ -16,3 +16,8 @@
 .cardImg{
     height: 100%;
 }
+
+.btnNav{
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
+    border: none !important;
+}

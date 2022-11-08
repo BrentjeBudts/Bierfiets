@@ -1,9 +1,9 @@
 import './App.css';
 import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {HashRouter, Link, Route, Routes,useParams} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import {BikePage} from "./pages/BikePage";
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 import {Home} from "./pages/Home";
 import {NavBar} from "./components/NavBar";
@@ -18,6 +18,8 @@ import {BikeInfoPage} from "./pages/BikeInfoPage";
 import {BouncyHousePage} from "./pages/BouncyHousePage";
 import {BouncyHouseInfoPage} from "./pages/BouncyHouseInfoPage";
 import "./services/firestore"
+import {LoginPage} from "./pages/LoginPage";
+import {RegisterPage} from "./pages/RegisterPage";
 
 export const firestoreConverter = {
     toFirestore: function(dataInApp) {
@@ -36,7 +38,7 @@ export const firestoreConverter = {
 
 function App() {
     const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
-    const [bikeData, loading, error] = useCollectionData(beerBikeRef);
+    const [bikeData] = useCollectionData(beerBikeRef);
     const bouncyHouseRef = collection(firestoreDB,"BouncyHouses").withConverter(firestoreConverter);
     const[housesData] = useCollectionData(bouncyHouseRef);
     const ratesRef = collection(firestoreDB,"Rates").withConverter(firestoreConverter);
@@ -50,6 +52,8 @@ function App() {
                 <Route path="attractions" element={<AttractionsPage bikes={bikeData} houses={housesData}/>}/>
                 <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
                 <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
+                <Route path="login" element={<LoginPage/>}/>
+                <Route path="register" element={<RegisterPage/>}/>
             </Routes>
         </HashRouter>
     );
