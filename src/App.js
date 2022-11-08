@@ -20,6 +20,7 @@ import {BouncyHouseInfoPage} from "./pages/BouncyHouseInfoPage";
 import "./services/firestore"
 import {LoginPage} from "./pages/LoginPage";
 import {RegisterPage} from "./pages/RegisterPage";
+import {ResetPage} from "./pages/ResetPasswordPage";
 
 export const firestoreConverter = {
     toFirestore: function(dataInApp) {
@@ -54,6 +55,7 @@ function App() {
                 <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
                 <Route path="login" element={<LoginPage/>}/>
                 <Route path="register" element={<RegisterPage/>}/>
+                <Route path="reset" element={<ResetPage/>}/>
             </Routes>
         </HashRouter>
     );
