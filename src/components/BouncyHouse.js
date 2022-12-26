@@ -13,8 +13,8 @@ export function BouncyHouse(props){
             <Attraction attraction={house}>
                 <p>Prijs : {house.price}€</p>
                 <p>Grootte : {house.size}</p>
-                <Link className="btn-light" to={'/houses/'+house.id} key={house.id}>Huur dit springkasteel!</Link><
-            /Attraction>
+                <Link className="btn-light" to={'/houses/'+house.id} key={house.id}>Huur dit springkasteel!</Link>
+            </Attraction>
         </div>
     )
 }

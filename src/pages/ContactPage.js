@@ -9,9 +9,9 @@ export function ContactPage(props){
     const {rates} = props;
     const [rate, setRate] = useState(0);
 
-    const addRate = () =>{
-        addDoc(rates, {stars: rate}).then(()=>success('RATED SUCCESSFULLY'));
-    }
+     const addRate = async () => {
+         await addDoc(rates, {stars: rate}).then(() => success('RATED SUCCESSFULLY'));
+     }
 
     return (
         <div>

@@ -11,7 +11,7 @@ export function Attraction(props){
             <Card.Body>
                 <Card.Title>{attraction.name}</Card.Title>
                 <Card.Text>
-                    //TOE TE VOEGEN
+                    //TODO TOE TE VOEGEN
                     INFO OVER ATTRACTIE
                 </Card.Text>
                 {children}
