@@ -1,13 +1,9 @@
 import {Link, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import Button from "react-bootstrap/Button";
-import {updateList} from "../utilities/updateList";
-import {Spin} from "antd";
 import {Card, Container} from "react-bootstrap";
 import {InfoCardGroup} from "../components/InfoCardGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {HirePage} from "./HirePage";
 
 export function BouncyHouseInfoPage(props){
     const {id} = useParams();

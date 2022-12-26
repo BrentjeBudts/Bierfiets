@@ -7,6 +7,8 @@ export function updateList(list,setLoading, id, name, email, date){
 
     const customersRef = collection(firestoreDB,"Customers").withConverter(firestoreConverter);
 
+    //TODO check for date
+
     const updateList = ()=> {
         setLoading(true);
         list.forEach(p => {

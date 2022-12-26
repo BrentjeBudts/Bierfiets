@@ -1,12 +1,8 @@
 import React, {useState} from "react";
-
-import PropTypes from "prop-types";
 import {Bike} from "../components/Bike";
 import {Container} from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
-
-
 
 
 export function BikePage(props) {
