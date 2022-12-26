@@ -1,13 +1,14 @@
 import React from "react";
 import {Card, CardGroup, Container} from "react-bootstrap";
-
+import {useUserContext} from "../App";
 
 export function Home() {
+    //TODO other picture
+    const {user} = useUserContext();
     return (
         <Container style={{margin : "auto"}}>
 
-            <h1>WELKOM</h1>
-
+            <h1>WELKOM {user}</h1>
             <CardGroup>
                 <HomeCard title="Springkastelen"
                           src="https://firebasestorage.googleapis.com/v0/b/bar-kar.appspot.com/o/springkasteel.jpg?alt=media&token=450a1bda-7115-4d82-a6e1-18444549e6d4">
@@ -17,7 +18,6 @@ export function Home() {
                           src="https://firebasestorage.googleapis.com/v0/b/bar-kar.appspot.com/o/bierfiets.jpg?alt=media&token=e64bcfd4-bf20-4f8c-8978-11e27b7af46f">
                     Hallo
                 </HomeCard>
-
                 <HomeCard title="Al onze attracties"
                           src="https://firebasestorage.googleapis.com/v0/b/bar-kar.appspot.com/o/bierfiets.jpg?alt=media&token=e64bcfd4-bf20-4f8c-8978-11e27b7af46f">
                     Hallo
@@ -35,7 +35,7 @@ function HomeCard(props) {
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>
-                    {children}
+                    {props.children}
                 </Card.Text>
             </Card.Body>
         </Card>
