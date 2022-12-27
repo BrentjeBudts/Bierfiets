@@ -1,14 +1,12 @@
 import React from "react";
 import {Card, CardGroup, Container} from "react-bootstrap";
-import {useUserContext} from "../App";
 
 export function Home() {
     //TODO other picture
-    const {user} = useUserContext();
     return (
         <Container style={{margin : "auto"}}>
 
-            <h1>WELKOM {user}</h1>
+            <h1>WELKOM</h1>
             <CardGroup>
                 <HomeCard title="Springkastelen"
                           src="https://firebasestorage.googleapis.com/v0/b/bar-kar.appspot.com/o/springkasteel.jpg?alt=media&token=450a1bda-7115-4d82-a6e1-18444549e6d4">

@@ -1,13 +1,14 @@
 import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {Modal} from "antd";
 import {firestoreDB} from "../services/firestore";
-import {firestoreConverter} from "../App";
+import {firestoreConverter, useLoadingContext} from "../App";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 
-export function UpdateList(list,setLoading, id, name, email, date){
+export function UpdateList(list, id, name, email, date){
 
     const customersRef = collection(firestoreDB,"Customers").withConverter(firestoreConverter);
-    const[customerData] = useCollectionData(customersRef);
+    const [customerData] = useCollectionData(customersRef);
+    const {setLoading} = useLoadingContext();
     //TODO check for date
 
     const updateList = ()=> {

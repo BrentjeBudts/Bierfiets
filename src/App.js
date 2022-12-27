@@ -22,7 +22,8 @@ import {LoginPage} from "./pages/LoginPage";
 import {RegisterPage} from "./pages/RegisterPage";
 import {ResetPage} from "./pages/ResetPasswordPage";
 import {HirePage} from "./pages/HirePage";
-import {useAuthState} from "react-firebase-hooks/auth";
+import {createContext, useMemo, useState} from "react";
+
 
 export const firestoreConverter = {
     toFirestore: function(dataInApp) {
@@ -40,6 +41,23 @@ export const firestoreConverter = {
 }
 
 
+const LoadingContext = createContext();
+
+export function LoadingProvider(props) {
+    const [isLoading,setLoading] = useState(false);
+    console.log({isLoading});
+
+    const api = useMemo(() => ({
+        isLoading, setLoading
+    }), [isLoading, setLoading]);
+
+    return <LoadingContext.Provider value={api}>
+        {props.children}
+    </LoadingContext.Provider>
+}
+
+export const useLoadingContext = () => useContext(LoadingContext);
+
 
 function App() {
     const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
@@ -48,17 +66,15 @@ function App() {
     const[housesData] = useCollectionData(bouncyHouseRef);
     const ratesRef = collection(firestoreDB,"Rates").withConverter(firestoreConverter);
 
-
-
-    return (<UserContextProvider>
+    return (<div>
             <HashRouter>
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="attractions/bikes/*" element={<BikePage bikes={bikeData}/>}/>
                     <Route path="attractions/houses/*" element={<BouncyHousePage houses={housesData}/>}/>
-                    <Route path="/houses/hire/:id" element={<HirePage list={housesData}/>}/>
-                    <Route path="/bikes/hire/:id" element={<HirePage list={bikeData}/>}/>
+                    <Route path="/houses/hire/:id" element={<LoadingProvider><HirePage list={housesData}/></LoadingProvider>}/>
+                    <Route path="/bikes/hire/:id" element={<LoadingProvider><HirePage list={bikeData}/></LoadingProvider>}/>
                     <Route path="contact" element={<ContactPage rates={ratesRef}/>}/>
                     <Route path="attractions" element={<AttractionsPage bikes={bikeData} houses={housesData}/>}/>
                     <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
@@ -68,20 +84,8 @@ function App() {
                     <Route path="reset" element={<ResetPage/>}/>
                 </Routes>
             </HashRouter>
-    </UserContextProvider>
+    </div>
     );
 }
-
-function UserContextProvider(props){
-    const [user] = useAuthState(auth);
-    if(user){
-        return <UserContext.Provider value={"name"}>
-            {props.children}
-        </UserContext.Provider>
-    }
-    else return <div>{props.children}</div>;
-}
-const UserContext = React.createContext("");
-export const useUserContext = () => useContext(UserContext);
 
 export default App;
