@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {Link, useNavigate} from "react-router-dom";
 import {auth,signInWithGoogle,logInWithEmailAndPassword} from "../services/firestore";
+import {getMouseEventProps} from "@testing-library/user-event/dist/keyboard/getEventProps";
 
 export function LoginPage(){
     const [email, setEmail] = useState("");

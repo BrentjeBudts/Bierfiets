@@ -23,6 +23,7 @@ export function NavBar() {
             const doc = await getDocs(q);
             const data = doc.docs[0].data();
             setName(data.name);
+            localStorage.setItem("name", data.name);
         } catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -34,7 +35,6 @@ export function NavBar() {
             fetchUserName().then();
         }
     })
-
 
     return( <Navbar bg="dark" variant="dark" expand="md">
         <Container>
@@ -52,7 +52,6 @@ export function NavBar() {
                     <NavLinkComp title="Contact" className="nav-link" to="contact/"/>
                     {!user?<NavLinkComp title="Login" className="nav-link" to="login/"/>:
                         <Button className="nav-link btnNav" onClick={logout}>Logout</Button>}
-
                 </Nav>
             </Navbar.Collapse>
         </Container>

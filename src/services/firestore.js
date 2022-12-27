@@ -37,6 +37,7 @@ export const signInWithGoogle = async () => {
                 role: "user"
             });
         }
+        window.location.reload(false);
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -46,6 +47,7 @@ export const signInWithGoogle = async () => {
 export const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
+        window.location.reload(false);
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -80,5 +82,7 @@ export const sendPasswordReset = async (email) => {
 };
 
 export const logout = () => {
+    localStorage.setItem("name", "");
     signOut(auth);
+    window.location.reload(false);
 };
