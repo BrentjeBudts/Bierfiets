@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {HashRouter, Route, Routes} from "react-router-dom";
 import {BikePage} from "./pages/BikePage";
-import React, {useContext} from "react";
+import React from "react";
 
 import {Home} from "./pages/Home";
 import {NavBar} from "./components/NavBar";
@@ -11,7 +11,7 @@ import {ContactPage} from "./pages/ContactPage";
 import {AttractionsPage} from "./pages/AttractionsPage";
 
 import {collection} from 'firebase/firestore';
-import {auth, firestoreDB} from "./services/firestore";
+import {firestoreDB} from "./services/firestore";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 
 import {BikeInfoPage} from "./pages/BikeInfoPage";
@@ -22,7 +22,8 @@ import {LoginPage} from "./pages/LoginPage";
 import {RegisterPage} from "./pages/RegisterPage";
 import {ResetPage} from "./pages/ResetPasswordPage";
 import {HirePage} from "./pages/HirePage";
-import {createContext, useMemo, useState} from "react";
+import {LoadingProvider} from "./contexts/LoadingContext";
+import {createContext, useContext, useMemo, useState} from "react";
 
 
 export const firestoreConverter = {
@@ -40,24 +41,24 @@ export const firestoreConverter = {
     }
 }
 
+const BikesContext = createContext();
 
-const LoadingContext = createContext();
+export function BikesProvider(props) {
+    const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
+    const [bikeData] = useCollectionData(beerBikeRef);
 
-export function LoadingProvider(props) {
-    const [isLoading,setLoading] = useState(false);
-    console.log({isLoading});
+    console.log({bikeData});
 
     const api = useMemo(() => ({
-        isLoading, setLoading
-    }), [isLoading, setLoading]);
+        bikeData
+    }), [bikeData]);
 
-    return <LoadingContext.Provider value={api}>
+    return <BikesContext.Provider value={api}>
         {props.children}
-    </LoadingContext.Provider>
+    </BikesContext.Provider>
 }
 
-export const useLoadingContext = () => useContext(LoadingContext);
-
+export const useBikeContext = () => useContext(BikesContext);
 
 function App() {
     const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
@@ -71,12 +72,12 @@ function App() {
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="attractions/bikes/*" element={<BikePage bikes={bikeData}/>}/>
+                    <Route path="attractions/bikes/*" element={<BikesProvider><BikePage bikes={bikeData}/></BikesProvider>}/>
                     <Route path="attractions/houses/*" element={<BouncyHousePage houses={housesData}/>}/>
                     <Route path="/houses/hire/:id" element={<LoadingProvider><HirePage list={housesData}/></LoadingProvider>}/>
                     <Route path="/bikes/hire/:id" element={<LoadingProvider><HirePage list={bikeData}/></LoadingProvider>}/>
                     <Route path="contact" element={<ContactPage rates={ratesRef}/>}/>
-                    <Route path="attractions" element={<AttractionsPage bikes={bikeData} houses={housesData}/>}/>
+                    <Route path="attractions" element={<BikesProvider><AttractionsPage houses={housesData}/></BikesProvider>}/>
                     <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
                     <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
                     <Route path="login" element={<LoginPage/>}/>

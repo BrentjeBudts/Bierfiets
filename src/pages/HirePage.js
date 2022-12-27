@@ -1,11 +1,11 @@
 import {Container} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
-import {createContext, useContext, useMemo} from "react";
+import React, {useState} from "react";
 import Button from "react-bootstrap/Button";
 import {UpdateList} from "../utilities/updateList";
 import {DatePicker, Input, Space, Spin} from "antd";
 import {useParams} from "react-router-dom";
-import {useLoadingContext} from "../App";
+import {useLoadingContext} from "../contexts/LoadingContext";
+
 
 export function HirePage(props){
     const {id} = useParams();

@@ -1,8 +1,9 @@
 import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {Modal} from "antd";
 import {firestoreDB} from "../services/firestore";
-import {firestoreConverter, useLoadingContext} from "../App";
+import {firestoreConverter} from "../App";
 import {useCollectionData} from "react-firebase-hooks/firestore";
+import {useLoadingContext} from "../contexts/LoadingContext";
 
 export function UpdateList(list, id, name, email, date){
 
