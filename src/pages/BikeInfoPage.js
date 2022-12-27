@@ -18,7 +18,6 @@ export function BikeInfoPage(props){
     return(
         <Container>
             <InfoCardGroup img={bike.img} title={bike.name}>
-                //TODO add info
                 <Link className="btn-light" to={'/bikes/hire/' + bike.id}>HUUR</Link>
             </InfoCardGroup>
         </Container>

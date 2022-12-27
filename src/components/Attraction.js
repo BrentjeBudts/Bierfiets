@@ -10,10 +10,6 @@ export function Attraction(props){
             <Card.Img className="cardImg"  variant="top" src={attraction.img} />
             <Card.Body>
                 <Card.Title>{attraction.name}</Card.Title>
-                <Card.Text>
-                    //TODO TOE TE VOEGEN
-                    INFO OVER ATTRACTIE
-                </Card.Text>
                 {children}
             </Card.Body>
         </Card>

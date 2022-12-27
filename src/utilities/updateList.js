@@ -10,7 +10,6 @@ export function UpdateList(list, id, name, email, date){
     const customersRef = collection(firestoreDB,"Customers").withConverter(firestoreConverter);
     const [customerData] = useCollectionData(customersRef);
     const {setLoading} = useLoadingContext();
-    //TODO check for date
 
     const updateList = ()=> {
         setLoading(true);

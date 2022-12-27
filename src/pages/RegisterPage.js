@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import {auth, registerWithEmailAndPassword, signInWithGoogle,} from "../services/firestore";
+import {Input, Space} from "antd";
+import {Container} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 
 export function RegisterPage() {
@@ -17,21 +20,22 @@ export function RegisterPage() {
         if (loading) return;
     }, [user, loading]);
     return (
-        <div>
-            <div>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name"/>
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address"/>
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
-                <button className="register__btn" onClick={register}>
+        <Container className="mt-5">
+            <Space direction="vertical" size="large">
+                <h1>Register here:</h1>
+                <Input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name"/>
+                <Input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address"/>
+                <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
+                <Button className="register__btn" onClick={register}>
                     Register
-                </button>
-                <button onClick={signInWithGoogle}>
+                </Button>
+                <Button onClick={signInWithGoogle}>
                     Register with Google
-                </button>
+                </Button>
                 <div>
                     Already have an account? <Link to="/login">Login</Link> now.
                 </div>
-            </div>
-        </div>
+            </Space>
+        </Container>
     );
 }

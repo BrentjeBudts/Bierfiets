@@ -9,6 +9,8 @@ export function Bike(props) {
     const {bike} =props;
     return (<div>
             <Attraction attraction={bike}>
+                <p>Prijs : {bike.price}€</p>
+                <p>Aantal stoelen : {bike.seats}</p>
                 <Link className="btn-light" to={'/bikes/'+bike.id} key={bike.id}>Huur deze fiets!</Link>
             </Attraction>
         </div>
