@@ -3,12 +3,10 @@ import {Bike} from "../components/Bike";
 import {Container} from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from "react-bootstrap/Col";
-import {useBikeContext} from "../App";
 
 
-export async function BikePage() {
-    const {bikes} = useBikeContext();
-    await bikes;
+export function BikePage(props) {
+    const {bikes} = props;
     return (<div>
             <Container>
                 {bikes !== undefined ?

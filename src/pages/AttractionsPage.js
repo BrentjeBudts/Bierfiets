@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import {Bike, BikePage} from "./BikePage";
 import {BouncyHousePage} from "./BouncyHousePage";
-import {useBikeContext} from "../App";
 
 export function AttractionsPage(props){
-    const {houses} = props;
-    const {bikes} = useBikeContext();
+    const {bikes, houses} = props;
     //TODO add title
     return(
         <div>

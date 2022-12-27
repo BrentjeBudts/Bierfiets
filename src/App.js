@@ -23,7 +23,7 @@ import {RegisterPage} from "./pages/RegisterPage";
 import {ResetPage} from "./pages/ResetPasswordPage";
 import {HirePage} from "./pages/HirePage";
 import {LoadingProvider} from "./contexts/LoadingContext";
-import {createContext, useContext, useMemo, useState} from "react";
+import {RateProvider} from "./contexts/RateContext";
 
 
 export const firestoreConverter = {
@@ -41,25 +41,6 @@ export const firestoreConverter = {
     }
 }
 
-const BikesContext = createContext();
-
-export function BikesProvider(props) {
-    const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
-    const [bikeData] = useCollectionData(beerBikeRef);
-
-    console.log({bikeData});
-
-    const api = useMemo(() => ({
-        bikeData
-    }), [bikeData]);
-
-    return <BikesContext.Provider value={api}>
-        {props.children}
-    </BikesContext.Provider>
-}
-
-export const useBikeContext = () => useContext(BikesContext);
-
 function App() {
     const beerBikeRef = collection(firestoreDB,"BeerBikes").withConverter(firestoreConverter);
     const [bikeData] = useCollectionData(beerBikeRef);
@@ -72,14 +53,15 @@ function App() {
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="attractions/bikes/*" element={<BikesProvider><BikePage bikes={bikeData}/></BikesProvider>}/>
+                    <Route path="attractions/bikes/*" element={<BikePage bikes={bikeData}/>}/>
                     <Route path="attractions/houses/*" element={<BouncyHousePage houses={housesData}/>}/>
                     <Route path="/houses/hire/:id" element={<LoadingProvider><HirePage list={housesData}/></LoadingProvider>}/>
                     <Route path="/bikes/hire/:id" element={<LoadingProvider><HirePage list={bikeData}/></LoadingProvider>}/>
-                    <Route path="contact" element={<ContactPage rates={ratesRef}/>}/>
-                    <Route path="attractions" element={<BikesProvider><AttractionsPage houses={housesData}/></BikesProvider>}/>
+                    <Route path="contact" element={<RateProvider><ContactPage rates={ratesRef}/></RateProvider>}/>
+                    <Route path="attractions" element={<AttractionsPage bikes={bikeData} houses={housesData}/>}/>
                     <Route path="/bikes/:id" element={<BikeInfoPage bikes={bikeData}/>}/>
                     <Route path="/houses/:id" element={<BouncyHouseInfoPage houses={housesData}/>}/>
+
                     <Route path="login" element={<LoginPage/>}/>
                     <Route path="register" element={<RegisterPage/>}/>
                     <Route path="reset" element={<ResetPage/>}/>

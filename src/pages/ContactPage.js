@@ -5,10 +5,11 @@ import Button from "react-bootstrap/Button";
 import {success} from "../utilities/updateList";
 import {Rate} from "antd";
 import {Container} from "react-bootstrap";
+import {useRateContext} from "../contexts/RateContext";
 
 export function ContactPage(props){
     const {rates} = props;
-    const [rate, setRate] = useState(0);
+    const {rate, setRate} = useRateContext();
 
      const addRate = async () => {
          await addDoc(rates, {stars: rate}).then(() => success('RATED SUCCESSFULLY'));
